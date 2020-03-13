@@ -10,7 +10,7 @@ class Login extends React.Component {
     this.props.loginFromChild();
   }
   render() {
-    let loginStatus = this.props.isVisibleParams.isNavBarHidden;
+    let loginStatus = this.props.isNavBarHidden;
     let buttonText = loginStatus ? "Enter" : "Logout";
     return (
       <div>

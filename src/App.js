@@ -14,24 +14,21 @@ class App extends React.Component {
     super(props);
     this.state = {
       token: "",
-      isVisibleParams: {
-        isNavBarHidden: true,
-        isUsersPageVisible: false,
-        isDashboardVisible: true,
-        isUploadVisible: false,
-        isTeamReportsVisible: false,
-        isRecruiterFilterVisible: false
-      }
+      isNavBarHidden: true,
+      isUsersPageVisible: false,
+      isDashboardVisible: true,
+      isUploadVisible: false,
+      isTeamReportsVisible: false,
+      isRecruiterFilterVisible: false
     };
     this.loginFromChild = this.loginFromChild.bind(this);
   }
 
   loginFromChild() {
-    let temp = { ...this.state.isVisibleParams };
-    temp.isNavBarHidden = temp.isNavBarHidden === false ? true : false;
+    let temp = this.state.isNavBarHidden;
 
     this.setState({
-      isVisibleParams: { ...temp }
+      isNavBarHidden: temp === true ? false : true
     });
   }
 
@@ -39,25 +36,30 @@ class App extends React.Component {
     return (
       <div>
         <Router>
-          {this.state.isVisibleParams.isNavBarHidden ? (
+          {this.state.isNavBarHidden ? (
             <div>
               <Login
-                isVisibleParams={this.state.isVisibleParams}
+                isNavBarHidden={this.state.isNavBarHidden}
                 loginFromChild={this.loginFromChild}
               />
             </div>
           ) : (
             <div>
               <Login
-                isVisibleParams={this.state.isVisibleParams}
+                isNavBarHidden={this.state.isNavBarHidden}
                 loginFromChild={this.loginFromChild}
               />
               <NavBar
-                isVisibleParams={this.state.isVisibleParams}
+                isNavBarHidden={this.state.isNavBarHidden}
                 loginFromChild={this.loginFromChild}
               />
               <TopNavBar
-                isVisibleParams={this.state.isVisibleParams}
+                isNavBarHidden={this.state.isNavBarHidden}
+                isUsersPageVisible={this.state.isUsersPageVisible}
+                isDashboardVisible={this.state.isDashboardVisible}
+                isUploadVisible={this.state.isUploadVisible}
+                isTeamReportsVisible={this.state.isTeamReportsVisible}
+                isRecruiterFilterVisible={this.state.isRecruiterFilterVisible}
                 loginFromChild={this.loginFromChild}
               />
             </div>

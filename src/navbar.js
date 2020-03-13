@@ -15,7 +15,7 @@ class Navbar extends React.Component {
     return (
       <div>
         <div>
-          {this.props.isVisibleParams.isNavBarHidden ? (
+          {this.props.isNavBarHidden ? (
             <div>Navbaar!!</div>
           ) : (
             <div>

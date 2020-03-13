@@ -32,7 +32,7 @@ class TopNavBar extends React.Component {
 
         <div className={"gap-in-flex"} />
         <div className={"rightSide"}>
-          {this.props.isVisibleParams.isRecruiterFilterVisible ? (
+          {this.props.isRecruiterFilterVisible ? (
             <Tooltip title="Recruiter Filter">
               <IconButton aria-label="show 5 new mails" color="inherit">
                 <Link to="/recruiterFilter" color="inherit">
