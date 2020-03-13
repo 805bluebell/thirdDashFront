@@ -1,7 +1,7 @@
 import React from "react";
-import Login from "./login";
+import Login from "./log/login";
 import NavBar from "./navbar";
-import TopNavBar from "./TopNavBar";
+import TopNavBar from "./topNavBar/TopNavBar";
 import {
   BrowserRouter as Router,
   Switch,
@@ -15,11 +15,11 @@ class App extends React.Component {
     this.state = {
       token: "",
       isNavBarHidden: true,
-      isUsersPageVisible: false,
+      isUsersPageVisible: true,
       isDashboardVisible: true,
-      isUploadVisible: false,
-      isTeamReportsVisible: false,
-      isRecruiterFilterVisible: false
+      isUploadVisible: true,
+      isTeamReportsVisible: true,
+      isRecruiterFilterVisible: true
     };
     this.loginFromChild = this.loginFromChild.bind(this);
   }
@@ -45,14 +45,6 @@ class App extends React.Component {
             </div>
           ) : (
             <div>
-              <Login
-                isNavBarHidden={this.state.isNavBarHidden}
-                loginFromChild={this.loginFromChild}
-              />
-              <NavBar
-                isNavBarHidden={this.state.isNavBarHidden}
-                loginFromChild={this.loginFromChild}
-              />
               <TopNavBar
                 isNavBarHidden={this.state.isNavBarHidden}
                 isUsersPageVisible={this.state.isUsersPageVisible}
@@ -67,23 +59,56 @@ class App extends React.Component {
 
           <Switch>
             <Route path="/login">
-              <h3>Login Page</h3>
-            </Route>
-
-            <Route path="/users">
-              {this.state.isUsersPageVisible ? (
-                <Users />
+              {this.state.token === "" ? (
+                <div>
+                  <Login
+                    isNavBarHidden={this.state.isNavBarHidden}
+                    loginFromChild={this.loginFromChild}
+                  />
+                </div>
               ) : (
-                <Redirect to="/home" />
+                <div />
               )}
             </Route>
 
+            <Route path="/recruiterFilter">
+              {this.state.isRecruiterFilterVisible ? (
+                <RecruiterFilters />
+              ) : (
+                <Redirect to="/" />
+              )}
+            </Route>
+
+            <Route path="/teamReports">
+              {this.state.isTeamReportsVisible ? (
+                <TeamReports />
+              ) : (
+                <Redirect to="/" />
+              )}
+            </Route>
+
+            <Route path="/upload">
+              {this.state.isUploadVisible ? <Upload /> : <Redirect to="/" />}
+            </Route>
+
+            <Route path="/users">
+              {this.state.isUsersPageVisible ? <Users /> : <Redirect to="/" />}
+            </Route>
+
             <Route path="/dash">
-              <Dash />
+              {this.state.isDashboardVisible ? (
+                <Dash />
+              ) : (
+                <Redirect to="/login" />
+              )}
+            </Route>
+
+            <Route path="/logout">
+              <Redirect to="/login" />
             </Route>
 
             <Route path="/">
-              <Home />
+              <Redirect to="/dash" />
             </Route>
           </Switch>
         </Router>

@@ -14,7 +14,11 @@ class Login extends React.Component {
     let buttonText = loginStatus ? "Enter" : "Logout";
     return (
       <div>
-        <button onClick={this.handleButton}>{buttonText}</button>
+        {this.props.isNavBarHidden ? (
+          <button onClick={this.handleButton}>{buttonText}</button>
+        ) : (
+          <div />
+        )}
       </div>
     );
   }

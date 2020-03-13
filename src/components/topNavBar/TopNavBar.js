@@ -12,7 +12,7 @@ import Tooltip from "@material-ui/core/Tooltip";
 
 import { Link } from "react-router-dom";
 import "./TopNavBar.css";
-import Logo from "./directi_logo.jpeg";
+import Logo from ".././directi_logo.jpeg";
 
 class TopNavBar extends React.Component {
   render() {
