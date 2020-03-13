@@ -1,0 +1,22 @@
+.sickle {
+  display: flex;
+  background-color: antiquewhite;
+  vertical-align: baseline;
+}
+
+.brand-icon {
+  text-decoration: none;
+}
+
+.gap-in-flex {
+  flex: 1;
+}
+
+.brand-icon > img {
+  width: auto;
+  height: 60%;
+}
+
+.last-updated {
+  font-size: 11px;
+}
